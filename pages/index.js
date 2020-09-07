@@ -1,30 +1,27 @@
-import Head from 'next/head'
 import Container from '../components/Container'
+import { gql, useQuery } from '@apollo/client'
+
+const SHOP_QUERY = gql`
+  query {
+    shop {
+      name
+      primaryDomain {
+        url
+        host
+      }
+    }
+  }
+`;
 
 export default function Home() {
+  const { loading, error, data } = useQuery(SHOP_QUERY);
+
+  console.log({ loading, error, data });
   return (
-    <div>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main>
-        <Container>
-          <h1>This is some text</h1>
-        </Container>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" />
-        </a>
-      </footer>
-    </div>
+    <main>
+      <Container>
+        <h1>This is some text</h1>
+      </Container>
+    </main>
   )
 }
