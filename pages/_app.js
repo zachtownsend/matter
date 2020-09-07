@@ -4,12 +4,12 @@ import '../styles/globals.css'
 import { Layout } from '../components/Layout';
 
 const httpLink = createHttpLink({
-  uri: process.env.STOREFRONT_URL || 'https://gittiexp.myshopify.com/api/2019-07/graphql.json',
+  uri: process.env.NEXT_PUBLIC_STOREFRONT_URL,
 });
 
 const middlewareLink = setContext(() => ({
     headers: {
-        'X-Shopify-Storefront-Access-Token': process.env.STOREFRONT_ACCESS_TOKEN || '06f480bcee9c3b61aa251e1e54ad629d',
+        'X-Shopify-Storefront-Access-Token': process.env.NEXT_PUBLIC_STOREFRONT_ACCESS_TOKEN,
     },
 }));
 
@@ -17,8 +17,6 @@ const client = new ApolloClient({
     link: middlewareLink.concat(httpLink),
     cache: new InMemoryCache(),
 });
-
-console.log(client);
 
 function MyApp({ Component, pageProps }) {
   return (
