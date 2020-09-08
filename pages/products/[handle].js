@@ -2,8 +2,7 @@ import React from 'react';
 import client from '../../lib/apollo';
 import { gql } from '@apollo/client';
 
-const ProductPage = ({ product }) => {
-
+const ProductPage = ({ product, shop }) => {
     return (
         <main>
             <h1>{product.title}</h1>
@@ -37,7 +36,7 @@ export async function getStaticProps({ params }) {
     const { handle } = params;
     const { data } = await client.query({
         query: gql`
-            query product {
+            query {
               productByHandle(handle: "${handle}") {
                 title
                 availableForSale
@@ -66,13 +65,17 @@ export async function getStaticProps({ params }) {
                   }
                 }
               }
+              shop {
+                    moneyFormat
+                }
             }
         `
     });
 
     return {
         props: {
-            product: data.productByHandle
+            product: data.productByHandle,
+            shop: data.shop
         }
     }
 
