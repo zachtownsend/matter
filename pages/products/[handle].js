@@ -27,8 +27,6 @@ export async function getStaticPaths() {
         `
     });
 
-    console.log(data);
-
     return {
         paths: data.products.edges.map(page => ({ params: { handle: page.node.handle } })),
         fallback: false,
