@@ -6,29 +6,32 @@ const ProductPage = ({ product, shop }) => {
     return (
         <main>
             <h1>{product.title}</h1>
-            <img src={product.images.edges[0].node.transformedSrc} alt={product.images.edges[0].node.altText}/>
+            <img
+                src={product.images.edges[0].node.transformedSrc}
+                alt={product.images.edges[0].node.altText}
+            />
         </main>
-    )
-}
+    );
+};
 
 export async function getStaticPaths() {
     const { data } = await client.query({
         query: gql`
             {
                 products(first: 100) {
-                edges {
-                  node {
-                    handle
-                  }
+                    edges {
+                        node {
+                            handle
+                        }
+                    }
                 }
-              }
             }
         `
     });
 
     return {
-        paths: data.products.edges.map(page => ({ params: { handle: page.node.handle } })),
-        fallback: false,
+        paths: data.products.edges.map((page) => ({ params: { handle: page.node.handle } })),
+        fallback: false
     };
 }
 
@@ -77,8 +80,7 @@ export async function getStaticProps({ params }) {
             product: data.productByHandle,
             shop: data.shop
         }
-    }
-
+    };
 }
 
 export default ProductPage;
