@@ -1,5 +1,6 @@
 import Container from '../components/Container'
 import { gql, useQuery } from '@apollo/client'
+import client from '../lib/apollo';
 
 const SHOP_QUERY = gql`
   query {
@@ -13,9 +14,9 @@ const SHOP_QUERY = gql`
   }
 `;
 
-export default function Home() {
-  const { loading, error, data } = useQuery(SHOP_QUERY);
-
+export default function Home(test) {
+  // const { loading, error, data } = useQuery(SHOP_QUERY);
+  console.log(test);
   return (
     <main>
       <Container>
@@ -23,4 +24,12 @@ export default function Home() {
       </Container>
     </main>
   )
+}
+
+export async function getStaticProps() {
+  const data = await client.query({
+      query: SHOP_QUERY
+  });
+
+  return { props: data };
 }
