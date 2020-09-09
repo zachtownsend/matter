@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Container = ({ children, tag }) => {
+const Container = ({ children, tag, className }) => {
     const Tag = tag;
-    return <Tag className="container mx-auto">{children}</Tag>;
+    const mergedClassNames = className
+        ? ['container mx-auto', className].join(' ').trim()
+        : 'container mx-auto';
+    return <Tag className={mergedClassNames}>{children}</Tag>;
 };
 
 Container.propTypes = {
