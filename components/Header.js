@@ -5,14 +5,18 @@ import Logo from './Logo';
 import styles from '../styles/Header.module.scss';
 import AccountLogo from './AccountLogo';
 import CartIcon from './CartIcon';
+import { useContext } from 'react';
+import { StoreContext } from '../context/StoreContext';
 
 const Header = () => {
+    // const { isMenuOpen, toggleMenuOpen } = useContext(StoreContext);
+
     return (
         <header>
             <Container className="flex-grow-0">
                 <div className={styles.grid}>
                     <div className="flex place-content-center">
-                        <button>Hamburger</button>
+                        <button onClick={toggleMenuOpen}>Hamburger</button>
                     </div>
                     <div className="flex place-content-center">
                         <Link href="/">
