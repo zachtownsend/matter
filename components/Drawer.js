@@ -21,4 +21,9 @@ const Drawer = ({ open, children, side }) => {
     );
 };
 
+Drawer.defaultProps = {
+    open: false,
+    side: 'left'
+};
+
 export default Drawer;
