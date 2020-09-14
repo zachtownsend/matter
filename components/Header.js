@@ -12,7 +12,9 @@ import Drawer from './Drawer';
 import Nav from './Nav';
 
 const Header = () => {
-    const { isMenuOpen, toggleMenuOpen } = useContext(StoreContext);
+    const { isMenuOpen, toggleMenuOpen, isCartOpen, toggleCartOpen, closeDrawers } = useContext(
+        StoreContext
+    );
 
     return (
         <header>
@@ -40,7 +42,9 @@ const Header = () => {
                                 </button>
                             </li>
                             <li>
-                                <button className="w-12 h-12 flex justify-center items-center">
+                                <button
+                                    onClick={toggleCartOpen}
+                                    className="w-12 h-12 flex justify-center items-center">
                                     <CartIcon />
                                 </button>
                             </li>
@@ -48,9 +52,12 @@ const Header = () => {
                     </div>
                 </div>
             </Container>
-            <PageBlock onClick={toggleMenuOpen} active={isMenuOpen} />
+            <PageBlock onClick={closeDrawers} active={isMenuOpen || isCartOpen} />
             <Drawer open={isMenuOpen} side="left">
                 <Nav />
+            </Drawer>
+            <Drawer open={isCartOpen} side="right">
+                <button onClick={toggleCartOpen}>Close</button>
             </Drawer>
         </header>
     );

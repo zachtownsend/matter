@@ -7,6 +7,7 @@ const client = Client.buildClient({
 });
 
 const defaultValues = {
+    closeDrawers: () => {},
     isMenuOpen: false,
     toggleMenuOpen: () => {},
     isCartOpen: false,
@@ -32,8 +33,25 @@ export const StoreProvider = ({ children }) => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isLoading, setLoading] = useState(false);
 
-    const toggleMenuOpen = () => setMenuOpen(!isMenuOpen);
-    const toggleCartOpen = () => setCartOpen(!isCartOpen);
+    const closeDrawers = () => {
+        [setCartOpen, setMenuOpen].forEach((func) => {
+            func(false);
+        });
+    };
+
+    const toggleMenuOpen = () => {
+        setMenuOpen(!isMenuOpen);
+
+        if (isCartOpen) {
+            setCartOpen(false);
+        }
+    };
+    const toggleCartOpen = () => {
+        setCartOpen(!isCartOpen);
+        if (isMenuOpen) {
+            setMenuOpen(false);
+        }
+    };
 
     useEffect(() => {
         initialiseCheckout();
@@ -137,6 +155,7 @@ export const StoreProvider = ({ children }) => {
         <StoreContext.Provider
             value={{
                 ...defaultValues,
+                closeDrawers,
                 isMenuOpen,
                 toggleMenuOpen,
                 isCartOpen,
