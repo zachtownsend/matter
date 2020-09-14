@@ -7,6 +7,9 @@ import AccountLogo from './AccountLogo';
 import CartIcon from './CartIcon';
 import { useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
+import NavDrawer from './NavDrawer';
+import PageBlock from './PageBlock';
+import { AnimatePresence } from 'framer-motion';
 
 const Header = () => {
     const { isMenuOpen, toggleMenuOpen } = useContext(StoreContext);
@@ -45,6 +48,8 @@ const Header = () => {
                     </div>
                 </div>
             </Container>
+            <PageBlock onClick={toggleMenuOpen} active={isMenuOpen} />
+            <NavDrawer open={isMenuOpen} />
         </header>
     );
 };
