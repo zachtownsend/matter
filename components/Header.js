@@ -22,14 +22,14 @@ const Header = () => {
                             <span className={styles.hamburger}></span>
                         </button>
                     </div>
-                    <div className="flex place-content-center">
+                    <div className="flex justify-center items-center">
                         <Link href="/">
                             <a className={styles.logoLink}>
                                 <Logo className={styles.logo} />
                             </a>
                         </Link>
                     </div>
-                    <div className="flex place-content-center">
+                    <div className="flex justify-center items-center">
                         <ul className="flex">
                             <li className="flex place-items-center">
                                 <button className="w-12 h-12 flex place-items-center">

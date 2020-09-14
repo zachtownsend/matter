@@ -3,7 +3,7 @@ import React from 'react';
 const CartIcon = ({ itemCount }) => {
     return (
         <div className="relative">
-            <span className="absolute top-0 left-0 w-full h-full flex place-content-center">
+            <span className="absolute top-0 left-0 w-full h-full flex place-content-center text-sm pt-2">
                 {itemCount}
             </span>
             <svg
