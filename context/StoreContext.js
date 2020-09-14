@@ -34,8 +34,8 @@ export const StoreProvider = ({ children }) => {
     const [isLoading, setLoading] = useState(false);
 
     const closeDrawers = () => {
-        [setCartOpen, setMenuOpen].forEach((func) => {
-            func(false);
+        [setCartOpen, setMenuOpen].forEach((setState) => {
+            setState(false);
         });
     };
 
