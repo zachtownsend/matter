@@ -9,14 +9,18 @@ import { useContext } from 'react';
 import { StoreContext } from '../context/StoreContext';
 
 const Header = () => {
-    // const { isMenuOpen, toggleMenuOpen } = useContext(StoreContext);
+    const { isMenuOpen, toggleMenuOpen } = useContext(StoreContext);
 
     return (
         <header>
             <Container className="flex-grow-0">
                 <div className={styles.grid}>
-                    <div className="flex place-content-center">
-                        <button onClick={toggleMenuOpen}>Hamburger</button>
+                    <div className="flex justify-items-start items-center">
+                        <button
+                            className="w-12 h-12 flex justify-center items-center"
+                            onClick={toggleMenuOpen}>
+                            <span className={styles.hamburger}></span>
+                        </button>
                     </div>
                     <div className="flex place-content-center">
                         <Link href="/">

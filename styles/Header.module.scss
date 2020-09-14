@@ -14,3 +14,30 @@
     max-width: 120px;
     display: inline-block;
 }
+
+.hamburger {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #000; // Change this to variable
+
+    &::after,
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 24px;
+        background: #000;
+        height: 2px;
+        display: block;
+    }
+
+    &::before {
+        top: -8px;
+    }
+
+    &::after {
+        bottom: -8px;
+    }
+}
