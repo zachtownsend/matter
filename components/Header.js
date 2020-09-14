@@ -34,13 +34,13 @@ const Header = () => {
                     </div>
                     <div className="flex justify-center items-center">
                         <ul className="flex">
-                            <li className="flex place-items-center">
-                                <button className="w-12 h-12 flex place-items-center">
+                            <li>
+                                <button className="w-12 h-12 flex justify-center items-center">
                                     <AccountLogo />
                                 </button>
                             </li>
-                            <li className="flex place-items-center">
-                                <button className="w-12 h-12 flex place-items-center">
+                            <li>
+                                <button className="w-12 h-12 flex justify-center items-center">
                                     <CartIcon />
                                 </button>
                             </li>
