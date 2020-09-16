@@ -12,9 +12,14 @@ import Drawer from './Drawer';
 import Nav from './Nav';
 
 const Header = () => {
-    const { isMenuOpen, toggleMenuOpen, isCartOpen, toggleCartOpen, closeDrawers } = useContext(
-        StoreContext
-    );
+    const {
+        isMenuOpen,
+        toggleMenuOpen,
+        isCartOpen,
+        toggleCartOpen,
+        closeDrawers,
+        isLoading
+    } = useContext(StoreContext);
 
     return (
         <header>
@@ -52,7 +57,7 @@ const Header = () => {
                     </div>
                 </div>
             </Container>
-            <PageBlock onClick={closeDrawers} active={isMenuOpen || isCartOpen} />
+            <PageBlock onClick={closeDrawers} active={isMenuOpen || isCartOpen || isLoading} />
             <Drawer open={isMenuOpen} side="left">
                 <Nav />
             </Drawer>
