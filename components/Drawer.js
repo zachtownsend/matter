@@ -2,7 +2,6 @@ import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Drawer = ({ open, children, side }) => {
-    const classNames = `fixed w-64 h-full top-0 ${side}-0 bg-white`;
     const fromPosition = { x: `${side === 'left' ? '-' : ''}100%` };
     const toPosition = { x: 0 };
     return (
@@ -13,7 +12,7 @@ const Drawer = ({ open, children, side }) => {
                     initial={fromPosition}
                     exit={fromPosition}
                     transition={{ duration: 0.4, type: 'just' }}
-                    className={classNames}>
+                    className={`fixed w-64 h-full top-0 ${side}-0 bg-white z-40`}>
                     {children}
                 </motion.div>
             )}

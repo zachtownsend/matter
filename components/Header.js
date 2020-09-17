@@ -10,6 +10,7 @@ import { StoreContext } from '../context/StoreContext';
 import PageBlock from './PageBlock';
 import Drawer from './Drawer';
 import Nav from './Nav';
+import Cart from './Cart';
 
 const Header = () => {
     const {
@@ -63,6 +64,7 @@ const Header = () => {
             </Drawer>
             <Drawer open={isCartOpen} side="right">
                 <button onClick={toggleCartOpen}>Close</button>
+                <Cart />
             </Drawer>
         </header>
     );

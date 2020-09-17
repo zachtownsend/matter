@@ -11,7 +11,7 @@ const PageBlock = ({ onClick, active }) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="bg-black bg-opacity-50 fixed inset-0"></motion.span>
+                    className="bg-black bg-opacity-50 fixed inset-0 z-30"></motion.span>
             )}
         </AnimatePresence>
     );

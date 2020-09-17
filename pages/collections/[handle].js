@@ -7,7 +7,6 @@ import ProductGridItem from '../../components/ProductGridItem';
 
 const CollectionPage = ({ id, title, descriptionHtml, image, products }) => {
     const { addProductToCart, checkout } = useContext(StoreContext);
-    console.log(products);
     return (
         <main>
             <Container>
@@ -87,7 +86,7 @@ export async function getStaticProps({ params }) {
                                         node {
                                             id
                                             altText
-                                            transformedSrc(crop: CENTER, maxHeight: 244, maxWidth: 365)
+                                            transformedSrc(crop: CENTER, maxHeight: 365, maxWidth: 244)
                                         }
                                     }
                                 }

@@ -12,33 +12,43 @@ import { StoreContext } from '../context/StoreContext';
 const ProductGridItem = ({ product }) => {
     const { addProductToCart } = useContext(StoreContext);
     const { handle, availableForSale, descriptionHtml: description, title, variants } = product;
-    const variableProduct = variants.edges.length > 1;
+    const multipleVariants = variants.edges.length > 1;
     const [firstVariant] = product.variants.edges;
     const [mainImage, secondaryImage] = product.images.edges;
     const { maxVariantPrice: maxPrice, minVariantPrice: minPrice } = product.priceRange;
-    console.log({ mainImage });
 
     const price =
         maxPrice.amount === minPrice.amount
             ? `€${maxPrice.amount}`
-            : `€${maxPrice.amount} - ${maxPrice.amount}`;
+            : `€${minPrice.amount} - ${maxPrice.amount}`;
 
     return (
-        <div>
-            <div>
+        <div className="flex flex-col">
+            <div className="relative">
                 <img
-                    className="w-full"
+                    className={`w-full ${
+                        secondaryImage
+                            ? 'relative z-10 opacity-100 hover:opacity-0 transition-opacity'
+                            : ''
+                    }`}
                     src={mainImage.node.transformedSrc}
                     alt={mainImage.node.altText}
                 />
+                {secondaryImage && (
+                    <img
+                        src={secondaryImage.node.transformedSrc}
+                        alt={secondaryImage.node.altText}
+                        className="absolute top-0 bottom-0 left-0 right-0 z-0"
+                    />
+                )}
             </div>
             <div>
                 <h3>{title}</h3>
                 <p>{price}</p>
                 {description || null}
             </div>
-            <div>
-                {variableProduct ? (
+            <div className="mt-auto">
+                {multipleVariants ? (
                     <a
                         href={`/products/${handle}`}
                         className="px-3 py-2 bg-green-500 text-white rounded-sm">
