@@ -129,7 +129,7 @@ export const StoreProvider = ({ children }) => {
             const newCheckout = await client.checkout.addDiscount(checkout.id, coupon);
             console.log(newCheckout);
             if (newCheckout.userErrors.length > 0) {
-                console.log(newCheckout.userErrors[0].message);
+                console.error(newCheckout.userErrors[0].message);
             }
             setCheckout(newCheckout);
         } catch (e) {

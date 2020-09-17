@@ -16,7 +16,6 @@ const SHOP_QUERY = gql`
 
 export default function Home(test) {
     // const { loading, error, data } = useQuery(SHOP_QUERY);
-    console.log(test);
     return (
         <main>
             <Container>
