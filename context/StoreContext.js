@@ -33,6 +33,7 @@ export const StoreProvider = ({ children }) => {
     const [isCartOpen, setCartOpen] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isLoading, setLoading] = useState(false);
+    const [isCartLoading, setCartLoading] = useState(false);
 
     const closeDrawers = () => {
         [setCartOpen, setMenuOpen].forEach((setState) => {
@@ -105,6 +106,7 @@ export const StoreProvider = ({ children }) => {
 
             const newCheckout = await client.checkout.addLineItems(checkout.id, lineItems);
             setCheckout(newCheckout);
+            setCartOpen(true);
         } catch (e) {
             console.error(e);
         }
@@ -125,10 +127,8 @@ export const StoreProvider = ({ children }) => {
     };
 
     const updateQty = async (lineItemId, quantity) => {
-        console.log(client.checkout);
-        console.log({ lineItemId, quantity });
         try {
-            setLoading(true);
+            setCartLoading(true);
             const lineItemsToUpdate = [{ id: lineItemId, quantity }];
             const newCheckout = await client.checkout.updateLineItems(
                 checkout.id,
@@ -139,7 +139,7 @@ export const StoreProvider = ({ children }) => {
             console.error(error);
         }
 
-        setLoading(false);
+        setCartLoading(false);
     };
 
     const checkCoupon = async (coupon) => {
@@ -186,7 +186,8 @@ export const StoreProvider = ({ children }) => {
                 removeCoupon,
                 client,
                 checkout,
-                isLoading
+                isLoading,
+                isCartLoading
             }}>
             {children}
         </StoreContext.Provider>
