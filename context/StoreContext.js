@@ -15,6 +15,7 @@ const defaultValues = {
     cart: [],
     addProductToCart: () => {},
     removeProductFromCart: () => {},
+    updateQty: () => {},
     checkCoupon: () => {},
     removeCoupon: () => {},
     client,
@@ -123,6 +124,24 @@ export const StoreProvider = ({ children }) => {
         setLoading(false);
     };
 
+    const updateQty = async (lineItemId, quantity) => {
+        console.log(client.checkout);
+        console.log({ lineItemId, quantity });
+        try {
+            setLoading(true);
+            const lineItemsToUpdate = [{ id: lineItemId, quantity }];
+            const newCheckout = await client.checkout.updateLineItems(
+                checkout.id,
+                lineItemsToUpdate
+            );
+            setCheckout(newCheckout);
+        } catch (error) {
+            console.error(error);
+        }
+
+        setLoading(false);
+    };
+
     const checkCoupon = async (coupon) => {
         try {
             setLoading(true);
@@ -162,6 +181,7 @@ export const StoreProvider = ({ children }) => {
                 toggleCartOpen,
                 addProductToCart,
                 removeProductFromCart,
+                updateQty,
                 checkCoupon,
                 removeCoupon,
                 client,
