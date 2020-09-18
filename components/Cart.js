@@ -3,6 +3,7 @@ import { StoreContext } from '../context/StoreContext';
 
 const Cart = () => {
     const { checkout, updateQty, removeProductFromCart } = useContext(StoreContext);
+    console.log({ checkout });
     return (
         <div className="px-6 py-4">
             <h3>Your basket</h3>
@@ -32,6 +33,7 @@ const Cart = () => {
                                             <input
                                                 type="number"
                                                 value={lineItem.quantity}
+                                                onChange={() => {}}
                                                 className="w-10 border-gray-800 text-center appearance-none"
                                             />
                                             <button
@@ -61,6 +63,17 @@ const Cart = () => {
             ) : (
                 <p>You have nothing in your basket.</p>
             )}
+            <div className="mt-auto block">
+                <div className="flex">
+                    <p className="flex-1">Subtotal:</p>
+                    <p className="w-16 text-right">{checkout.totalPrice}</p>
+                </div>
+                <a
+                    href={checkout.webUrl}
+                    className="w-full bg-black px-4 py-2 text-white block text-center">
+                    Checkout
+                </a>
+            </div>
         </div>
     );
 };
