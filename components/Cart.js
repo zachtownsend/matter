@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { StoreContext } from '../context/StoreContext';
+import { sizedImage } from '../lib/helpers';
 
 const Cart = () => {
     const { checkout, updateQty, checkCoupon, removeCoupon, isCartLoading } = useContext(
@@ -22,7 +23,7 @@ const Cart = () => {
                             <li className="flex mb-2" key={lineItem.id}>
                                 <div className="w-24 mr-4">
                                     <img
-                                        src={lineItem.variant.image.src}
+                                        src={sizedImage(lineItem.variant.image.src, '96x64')}
                                         alt={lineItem.variant.image.altText}
                                     />
                                 </div>
