@@ -15,6 +15,7 @@ const defaultValues = {
     cart: [],
     addProductToCart: () => {},
     removeProductFromCart: () => {},
+    updateQty: () => {},
     checkCoupon: () => {},
     removeCoupon: () => {},
     client,
@@ -32,6 +33,7 @@ export const StoreProvider = ({ children }) => {
     const [isCartOpen, setCartOpen] = useState(false);
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isLoading, setLoading] = useState(false);
+    const [isCartLoading, setCartLoading] = useState(false);
 
     const closeDrawers = () => {
         [setCartOpen, setMenuOpen].forEach((setState) => {
@@ -104,6 +106,7 @@ export const StoreProvider = ({ children }) => {
 
             const newCheckout = await client.checkout.addLineItems(checkout.id, lineItems);
             setCheckout(newCheckout);
+            setCartOpen(true);
         } catch (e) {
             console.error(e);
         }
@@ -121,6 +124,22 @@ export const StoreProvider = ({ children }) => {
         }
 
         setLoading(false);
+    };
+
+    const updateQty = async (lineItemId, quantity) => {
+        try {
+            setCartLoading(true);
+            const lineItemsToUpdate = [{ id: lineItemId, quantity }];
+            const newCheckout = await client.checkout.updateLineItems(
+                checkout.id,
+                lineItemsToUpdate
+            );
+            setCheckout(newCheckout);
+        } catch (error) {
+            console.error(error);
+        }
+
+        setCartLoading(false);
     };
 
     const checkCoupon = async (coupon) => {
@@ -162,11 +181,13 @@ export const StoreProvider = ({ children }) => {
                 toggleCartOpen,
                 addProductToCart,
                 removeProductFromCart,
+                updateQty,
                 checkCoupon,
                 removeCoupon,
                 client,
                 checkout,
-                isLoading
+                isLoading,
+                isCartLoading
             }}>
             {children}
         </StoreContext.Provider>
