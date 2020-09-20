@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "NODE_OPTIONS='--inspect' next dev",
         "build": "next build",
         "start": "next start",
         "lint": "eslint --fix .",
@@ -26,6 +26,8 @@
         "responsive-loader": "^2.1.1",
         "sass": "^1.26.10",
         "shopify-buy": "^2.11.0",
+        "storyblok-js-client": "^2.5.2",
+        "storyblok-react": "^0.1.1",
         "webp-loader": "^0.6.0"
     },
     "devDependencies": {
