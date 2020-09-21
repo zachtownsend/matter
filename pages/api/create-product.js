@@ -1,6 +1,5 @@
 import axios from 'axios';
 import crypto from 'crypto';
-import { NowRequest, NowResponse } from '@vercel/node';
 
 export const config = {
     api: {
@@ -8,12 +7,12 @@ export const config = {
     }
 };
 
-async function verifyWebhook(req: NowRequest): Promise<boolean | NowRequest> {
+async function verifyWebhook(req) {
     const hmac = req.headers['x-shopify-hmac-sha256'];
     const bodyChunks = [];
     return new Promise((resolve, reject) => {
         req.on('data', (chunk) => bodyChunks.push(chunk)).on('end', async () => {
-            const rawBody: string = Buffer.concat(bodyChunks).toString('utf-8');
+            const rawBody = Buffer.concat(bodyChunks).toString('utf-8');
 
             try {
                 const hash = crypto
@@ -32,7 +31,7 @@ async function verifyWebhook(req: NowRequest): Promise<boolean | NowRequest> {
     });
 }
 
-export default async (req: NowRequest, res: NowResponse): Promise<any> => {
+export default async (req, res) => {
     const productData = await verifyWebhook(req);
     if (!productData) {
         res.status(401).send('Webhook unverified');
