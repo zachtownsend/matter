@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
+        "dev": "NODE_OPTIONS='--inspect' next dev",
         "build": "next build",
         "start": "next start",
         "lint": "eslint --fix .",
@@ -11,9 +11,11 @@
     },
     "dependencies": {
         "@apollo/client": "^3.1.4",
+        "@vercel/node": "^1.8.2",
+        "axios": "^0.20.0",
+        "crypto": "^1.0.1",
         "framer-motion": "^2.6.13",
         "graphql": "^15.3.0",
-        "imagemin-gifsicle": "^7.0.0",
         "imagemin-mozjpeg": "^9.0.0",
         "imagemin-optipng": "^8.0.0",
         "imagemin-svgo": "^8.0.0",
@@ -26,6 +28,8 @@
         "responsive-loader": "^2.1.1",
         "sass": "^1.26.10",
         "shopify-buy": "^2.11.0",
+        "storyblok-js-client": "^2.5.2",
+        "storyblok-react": "^0.1.1",
         "webp-loader": "^0.6.0"
     },
     "devDependencies": {

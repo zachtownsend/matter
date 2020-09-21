@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import Footer from './Footer';
 import Header from './Header';
+import StoryblokService from '../lib/storyblok-service';
 
 export const Layout = ({ children, title = 'This is a default title' }) => {
     return (
@@ -14,6 +15,7 @@ export const Layout = ({ children, title = 'This is a default title' }) => {
             <Header />
             <main>{children}</main>
             <Footer />
+            {StoryblokService.bridge()}
         </div>
     );
 };
