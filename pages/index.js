@@ -32,7 +32,6 @@ export default class Home extends Component {
 
 export async function getStaticProps(test) {
     // StoryblokService.setQuery(query);
-    console.log(test);
     const { data } = await StoryblokService.get('cdn/stories/home');
     return { props: { page: data } };
 }
