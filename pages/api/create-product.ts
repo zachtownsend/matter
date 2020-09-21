@@ -21,7 +21,7 @@ async function verifyWebhook(req: NowRequest): Promise<boolean | NowRequest> {
                         'SHA256',
                         '22a4c18b944f1ef5794c2db5e70157424d9ae6d78ee5b6007bdb2b0d549a4a85'
                     )
-                    .update(rawBody, 'utf8', 'hex')
+                    .update(rawBody, 'utf8')
                     .digest('base64');
                 resolve(hash === hmac ? JSON.parse(rawBody) : false);
             } catch (error) {
