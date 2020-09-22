@@ -2,11 +2,13 @@ import Teaser from './Teaser';
 import Feature from './Feature';
 import Grid from './Grid';
 import Placeholder from './Placeholder';
+import HeroBlock from './HeroBlock';
 
 const Components = {
     teaser: Teaser,
     feature: Feature,
-    grid: Grid
+    grid: Grid,
+    heroBlock: HeroBlock
 };
 
 const Component = ({ blok }) => {
