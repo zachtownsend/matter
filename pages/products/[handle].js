@@ -1,8 +1,10 @@
 import React from 'react';
 import client from '../../lib/apollo';
 import { gql } from '@apollo/client';
+import StoryblokService from '../../lib/storyblok-service';
 
-const ProductPage = ({ product, shop }) => {
+const ProductPage = ({ product, shop, content }) => {
+    console.log(content);
     return (
         <main>
             <h1>{product.title}</h1>
@@ -75,9 +77,14 @@ export async function getStaticProps({ params }) {
         `
     });
 
+    const content = await StoryblokService.get(`cdn/stories/products/${handle}`, {
+        cv: Date.now()
+    });
+
     return {
         props: {
             product: data.productByHandle,
+            content,
             shop: data.shop
         }
     };
