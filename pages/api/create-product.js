@@ -43,7 +43,20 @@ export default async (req, res) => {
             'content-type': 'application/json',
             authorization: 'J5463PpgAwcqaam3OhCUWQtt-72710-FtuvwyJ9q5z-x11MwBjf'
         },
-        data: { story: { name: productData.title, slug: productData.handle } }
+        data: {
+            story: {
+                name: productData.title,
+                slug: productData.handle,
+                parent_id: 21495007,
+                full_path: `products/${productData.handle}`,
+                real_path: `products/${productData.handle}`,
+                default_root: 'products',
+                content: {
+                    component: 'product',
+                    body: []
+                }
+            }
+        }
     };
 
     await axios
