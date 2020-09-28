@@ -3,8 +3,8 @@ import client from '../../lib/apollo';
 import { gql } from '@apollo/client';
 import StoryblokService from '../../lib/storyblok-service';
 
-const ProductPage = ({ product, shop, content }) => {
-    console.log(content);
+const ProductPage = ({ product, shop }) => {
+    // console.log(content);
     return (
         <main>
             <h1>{product.title}</h1>
@@ -77,9 +77,15 @@ export async function getStaticProps({ params }) {
         `
     });
 
-    const content = await StoryblokService.get(`cdn/stories/products/${handle}`, {
-        cv: Date.now()
-    });
+    let content;
+
+    try {
+        content = await StoryblokService.get(`cdn/stories/products/${handle}`, {
+            cv: Date.now()
+        });
+    } catch (error) {
+        content = [];
+    }
 
     return {
         props: {
