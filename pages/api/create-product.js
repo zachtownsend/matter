@@ -49,7 +49,6 @@ export default async (req, res) => {
     await axios
         .request(options)
         .then(function (response) {
-            console.log(response.data);
             res.status(200).send('it worked!');
         })
         .catch(function (error) {
