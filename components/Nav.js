@@ -18,7 +18,7 @@ const Nav = () => {
             <h1>This is the menu</h1>
             <ul>
                 {main_navigation.map((link) => (
-                    <a href={link.url.cached_url} target={link.target}>
+                    <a key={link._uid} href={link.url.cached_url} target={link.target}>
                         {parse(resolver.render(link.text))}
                     </a>
                 ))}
