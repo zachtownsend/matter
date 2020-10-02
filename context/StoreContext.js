@@ -146,7 +146,6 @@ export const StoreProvider = ({ children }) => {
         try {
             setLoading(true);
             const newCheckout = await client.checkout.addDiscount(checkout.id, coupon);
-            console.log(newCheckout);
             if (newCheckout.userErrors.length > 0) {
                 console.error(newCheckout.userErrors[0].message);
             }
