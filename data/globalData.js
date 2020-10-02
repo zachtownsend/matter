@@ -8,7 +8,7 @@ module.exports = async () => {
             type: 'memory'
         }
     });
-    const data = await storyblokClient.get('cdn/stories/global', { cv: Date.now() });
+    const { data } = await storyblokClient.get('cdn/stories/global', { cv: Date.now() });
     console.log(data);
     return {
         code: `module.exports = ${JSON.stringify(data.story.content)}`
