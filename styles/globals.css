@@ -2,28 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-        Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.transition-opacity {
-    transition: opacity 0.2s ease-out;
-}
-
 @layer base {
+    @font-face {
+        font-family: 'apercu';
+        src: url('/apercu-regular-pro.woff') format('woff');
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'apercu';
+        src: url('/apercu-bold-pro.woff') format('woff');
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+    }
+
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .transition-opacity {
+        transition: opacity 0.2s ease-out;
+    }
+
     h1 {
         @apply text-4xl;
     }

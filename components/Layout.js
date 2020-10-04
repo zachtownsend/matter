@@ -10,6 +10,8 @@ export const Layout = ({ children, title = 'This is a default title' }) => {
         <div>
             <Head>
                 <title>{title}</title>
+                <link rel="preload" href="/apercu-regular-pro.woff" as="font" crossOrigin="" />
+                <link rel="preload" href="/apercu-bold-pro.woff" as="font" crossOrigin="" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header />
