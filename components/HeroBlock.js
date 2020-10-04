@@ -15,9 +15,6 @@ const HeroBlock = ({ blok }) => {
                 />
                 <div className={`z-10 relative text-${blok.content_alignment}`}>
                     <RichText content={blok.content} />
-                    <a href={blok.cta_href.cached_url} target={blok.cta_target}>
-                        {blok.cta_text}
-                    </a>
                 </div>
             </div>
         </SbEditable>
